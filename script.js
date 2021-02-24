@@ -46,3 +46,52 @@ const showCurrentTime = function()
     const clockTime = hours + ':' + minutes + ':' + seconds + " " + meridian + "!";
 };
 
+// Getting the clock to increment on its own and change out messages and pictures
+
+let updateClock = function ()
+{
+    let time = new Date().getHours();
+    let messageText;
+    let image = 
+    'https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+
+    let timeEventJS = document.getElementById("timeEvent");
+    let lolkidsImageJS = document.getElementById('lolkidsImage');
+
+    if (time == partytime)
+    {
+        image = 
+        "https://images.pexels.com/photos/1049622/pexels-photo-1049622.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        messageText = "Let's Party";
+    } 
+    else if (time == wakeuptime)
+    {
+        image = 
+        "https://images.pexels.com/photos/796606/pexels-photo-796606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+        messageText = "Wake up";
+    }
+    else if (time == sleeptime)
+    {
+        image = 
+        "https://images.pexels.com/photos/1438504/pexels-photo-1438504.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+        messageText = "Sleep tight!"
+    }
+    else if (time < noon)
+    {
+        image = 
+        "https://images.pexels.com/photos/585759/pexels-photo-585759.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+        messageText = "Good Morning!"
+    }
+    else
+    {
+        image =
+        "https://images.pexels.com/photos/1237119/pexels-photo-1237119.jpeg?auto=compress&cs=tinysrgb&h=650&w=940";
+        messageText = "Good afternoon!"
+    }
+
+    console.log(messageText);
+    timeEventJS.innerHTML = messageText;
+    lolkidsImage.src = image;
+
+    showCurrentTime();
+};
