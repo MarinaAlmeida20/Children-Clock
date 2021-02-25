@@ -39,7 +39,7 @@ const showCurrentTime = function()
     // Set Seconds
     if (seconds < 10) // < 10 -> 1, 2, 3, 4, 5, 6, 7, 8, 9
     {
-        seconds = "0" = seconds; // -> 01, 02, 03, 04, 05, 06, 07, 08, 09
+        seconds = "0" + seconds; // -> 01, 02, 03, 04, 05, 06, 07, 08, 09
     }
 
     // put together the string that display the time
@@ -70,7 +70,7 @@ let updateClock = function ()
         "https://images.pexels.com/photos/796606/pexels-photo-796606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
         messageText = "Wake up";
     }
-    else if (time == sleeptime)
+    else if (time == naptime)
     {
         image = 
         "https://images.pexels.com/photos/1438504/pexels-photo-1438504.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
@@ -95,3 +95,65 @@ let updateClock = function ()
 
     showCurrentTime();
 };
+
+updateClock();
+
+// Getting the clock to increment once a second
+let oneSecond = 1000;
+setInterval( updateClock, oneSecond);
+
+// Getting the Party Time Button to Work
+let partyButton = 
+document.getElementById("partyTimeButton");
+
+let partyEvent = function()
+{
+    if(partytime < 0)
+    {
+        partytime = new Date().getHours();
+        partyTimeButton.innerText = "Party Over!";
+        partyTimeButton.style.backgroundColor = "#0A8DAB";
+    }
+    else
+    {
+        partytime = -1;
+        partyTimeButton.innerText = "Party Time!";
+        partyTimeButton.style.backgroundColor = "#222"
+    }
+};
+
+partyButton.addEventListener("click", partyEvent);
+partyEvent();
+
+// Activates Wake-Up selector
+let wakeUpTimeSelector = 
+  document.getElementById("wakeUpTimeSelector");
+
+let wakeUpEvent = function()
+{
+    wakeuptime = wakeUpTimeSelector.value;
+};
+
+wakeUpTimeSelector.addEventListener("change", wakeUpEvent);
+
+// Activates Lunch selector
+let lunchTimeSelector = 
+ document.getElementById("lunchTimeSelector");
+
+let lunchEvent = function()
+{
+    lunchtime = lunchTimeSelector.value;
+};
+
+lunchTimeSelector.addEventListener("change", lunchEvent);
+
+// Activates Nap-Time selector
+let napTimeSelector = 
+  document.getElementById("napTimeSelector");
+
+let napEvent = function()
+{
+    naptime = napTimeSelector.value;
+};
+
+napTimeSelector.addEventListener("change", napEvent);
